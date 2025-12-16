@@ -17,7 +17,9 @@ builder.Services.AddStackExchangeRedisCache(options =>
 });
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IMessageProducer, RabbitMqProducer>();
 builder.Services.AddHostedService<ProductCreatedWorker>();
 builder.Services.AddControllers();
