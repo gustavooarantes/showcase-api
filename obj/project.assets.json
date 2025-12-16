@@ -721,6 +721,19 @@
           }
         }
       },
+      "RabbitMQ.Client/6.8.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/RabbitMQ.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/RabbitMQ.Client.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Scalar.AspNetCore/2.11.6": {
         "type": "package",
         "compile": {
@@ -2398,6 +2411,23 @@
         "postgresql.png"
       ]
     },
+    "RabbitMQ.Client/6.8.1": {
+      "sha512": "jNsmGgmCNw2S/NzskeN2ijtGywtH4Sk/G6jWUTD5sY9SrC27Xz6BsLIiB8hdsfjeyWCa4j4GvCIGkpE8wrjU1Q==",
+      "type": "package",
+      "path": "rabbitmq.client/6.8.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net462/RabbitMQ.Client.dll",
+        "lib/net462/RabbitMQ.Client.xml",
+        "lib/netstandard2.0/RabbitMQ.Client.dll",
+        "lib/netstandard2.0/RabbitMQ.Client.xml",
+        "rabbitmq.client.6.8.1.nupkg.sha512",
+        "rabbitmq.client.nuspec"
+      ]
+    },
     "Scalar.AspNetCore/2.11.6": {
       "sha512": "Sq55A++4V08c6i+o80v1pUULL3AoEWv+HJcxOhbevt3t5W9YVJEZ1BdEIEHbYZA3Otb6L6G0BurJ5xBQSM2mzA==",
       "type": "package",
@@ -2604,6 +2634,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 9.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.2",
+      "RabbitMQ.Client >= 6.8.1",
       "Scalar.AspNetCore >= 2.11.6"
     ]
   },
@@ -2669,6 +2700,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "[9.0.2, )"
+          },
+          "RabbitMQ.Client": {
+            "target": "Package",
+            "version": "[6.8.1, )"
           },
           "Scalar.AspNetCore": {
             "target": "Package",

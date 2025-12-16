@@ -1,4 +1,4 @@
-using FoodNet.Entities;
+using FoodNet.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace FoodNet.Data;

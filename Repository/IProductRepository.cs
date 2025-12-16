@@ -1,4 +1,4 @@
-using FoodNet.Entities;
+using FoodNet.Entity;
 
 namespace FoodNet.Repository;
 

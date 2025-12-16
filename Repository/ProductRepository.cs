@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using FoodNet.Data;
-using FoodNet.Entities;
+using FoodNet.Entity;
 
 namespace FoodNet.Repository;
 

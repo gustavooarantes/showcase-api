@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[9.0.2, )"
             },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.8.1, )"
+            },
             "Scalar.AspNetCore": {
               "target": "Package",
               "version": "[2.11.6, )"

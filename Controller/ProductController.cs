@@ -1,79 +1,39 @@
 using FoodNet.DTO;
-using FoodNet.Entities;
-using FoodNet.Repository;
+using FoodNet.Service;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FoodNet.Controller;
+namespace FoodNet.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 public class ProductController : ControllerBase
 {
-    private readonly IProductRepository _repository;
+    private readonly IProductService _service;
 
-    public ProductController(IProductRepository repository)
+    public ProductController(IProductService service)
     {
-        _repository = repository;
+        _service = service;
     }
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ProductResponseDto>>> GetProducts()
     {
-        var products = await _repository.GetAllAsync();
-
-        var productsDto = products.Select(p => new ProductResponseDto(
-            p.Id,
-            p.Name,
-            p.Description,
-            p.Price,
-            p.category
-        ));
-
-        return Ok(productsDto);
+        var products = await _service.GetAllProductsAsync();
+        return Ok(products);
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<ProductResponseDto>> GetProduct(int id)
     {
-        var product = await _repository.GetByIdAsync(id);
-
-        if (product == null)
-        {
-            return NotFound();
-        }
-
-        var productDto = new ProductResponseDto(
-            product.Id,
-            product.Name,
-            product.Description,
-            product.Price,
-            product.category
-        );
-
-        return Ok(productDto);
+        var product = await _service.GetProductByIdAsync(id);
+        if (product == null) return NotFound();
+        return Ok(product);
     }
 
     [HttpPost]
     public async Task<ActionResult<ProductResponseDto>> CreateProduct(CreateProductDto request)
     {
-        var newProduct = new Product
-        {
-            Name = request.Name,
-            Description = request.Description,
-            Price = request.Price,
-            category = request.Category
-        };
-
-        await _repository.AddAsync(newProduct);
-
-        var responseDto = new ProductResponseDto(
-            newProduct.Id,
-            newProduct.Name,
-            newProduct.Description,
-            newProduct.Price,
-            newProduct.category
-        );
-
-        return CreatedAtAction(nameof(GetProduct), new { id = newProduct.Id }, responseDto);
+        var createdProduct = await _service.CreateProductAsync(request);
+        return CreatedAtAction(nameof(GetProduct), new { id = createdProduct.Id }, createdProduct);
     }
 }
