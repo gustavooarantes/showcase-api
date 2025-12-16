@@ -122,3 +122,4 @@
 /home/gustavo/Projects/FoodNet/FoodNet/obj/Debug/net10.0/FoodNet.genruntimeconfig.cache
 /home/gustavo/Projects/FoodNet/FoodNet/obj/Debug/net10.0/ref/FoodNet.dll
 /home/gustavo/Projects/FoodNet/FoodNet/bin/Debug/net10.0/Scalar.AspNetCore.dll
+/home/gustavo/Projects/FoodNet/FoodNet/bin/Debug/net10.0/RabbitMQ.Client.dll
