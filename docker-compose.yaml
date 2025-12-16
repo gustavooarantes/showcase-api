@@ -1,0 +1,59 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: foodnet-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: foodnet_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - foodnet-network
+
+  cache:
+    image: redis:alpine
+    container_name: foodnet-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - foodnet-network
+
+  messaging:
+    image: rabbitmq:3-management
+    container_name: foodnet-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - foodnet-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: foodnet-api
+    ports:
+      - "8080:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=foodnet_db;Username=postgres;Password=password
+      - RabbitMq__Host=messaging
+      - Redis__ConnectionString=cache:6379
+    depends_on:
+      - db
+      - cache
+      - messaging
+    networks:
+      - foodnet-network
+
+volumes:
+  postgres_data:
+
+networks:
+  foodnet-network:
+    driver: bridge
