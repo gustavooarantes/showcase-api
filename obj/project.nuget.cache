@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6bNBN8xKmak=",
+  "dgSpecHash": "CqMcxlWXEGc=",
   "success": true,
   "projectFilePath": "/home/gustavo/Projects/FoodNet/FoodNet/FoodNet.csproj",
   "expectedPackageFiles": [
@@ -35,6 +35,7 @@
     "/home/gustavo/.nuget/packages/mono.texttemplating/3.0.0/mono.texttemplating.3.0.0.nupkg.sha512",
     "/home/gustavo/.nuget/packages/npgsql/9.0.2/npgsql.9.0.2.nupkg.sha512",
     "/home/gustavo/.nuget/packages/npgsql.entityframeworkcore.postgresql/9.0.2/npgsql.entityframeworkcore.postgresql.9.0.2.nupkg.sha512",
+    "/home/gustavo/.nuget/packages/scalar.aspnetcore/2.11.6/scalar.aspnetcore.2.11.6.nupkg.sha512",
     "/home/gustavo/.nuget/packages/system.codedom/6.0.0/system.codedom.6.0.0.nupkg.sha512",
     "/home/gustavo/.nuget/packages/system.composition/7.0.0/system.composition.7.0.0.nupkg.sha512",
     "/home/gustavo/.nuget/packages/system.composition.attributedmodel/7.0.0/system.composition.attributedmodel.7.0.0.nupkg.sha512",
