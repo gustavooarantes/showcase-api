@@ -1,4 +1,5 @@
 using FoodNet.Data;
+using FoodNet.Repository;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<FoodNetDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();

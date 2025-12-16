@@ -1,40 +1,79 @@
-using FoodNet.Data;
+using FoodNet.DTO;
 using FoodNet.Entities;
+using FoodNet.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-namespace FoodNet.Controllers;
+namespace FoodNet.Controller;
 
 [ApiController]
 [Route("api/[controller]")]
 public class ProductController : ControllerBase
 {
-    private readonly FoodNetDbContext _context;
+    private readonly IProductRepository _repository;
 
-    public ProductController(FoodNetDbContext context)
+    public ProductController(IProductRepository repository)
     {
-        _context = context;
+        _repository = repository;
     }
-    
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Product>> GetProduct(int id)
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<ProductResponseDto>>> GetProducts()
     {
-        var product = await _context.Products.FindAsync(id);
+        var products = await _repository.GetAllAsync();
+
+        var productsDto = products.Select(p => new ProductResponseDto(
+            p.Id,
+            p.Name,
+            p.Description,
+            p.Price,
+            p.category
+        ));
+
+        return Ok(productsDto);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<ProductResponseDto>> GetProduct(int id)
+    {
+        var product = await _repository.GetByIdAsync(id);
 
         if (product == null)
         {
             return NotFound();
         }
 
-        return product;
-    }
-    
-    [HttpPost]
-    public async Task<ActionResult<Product>> CreateProduct(Product product)
-    {
-        _context.Products.Add(product);
-        await _context.SaveChangesAsync();
+        var productDto = new ProductResponseDto(
+            product.Id,
+            product.Name,
+            product.Description,
+            product.Price,
+            product.category
+        );
 
-        return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
+        return Ok(productDto);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<ProductResponseDto>> CreateProduct(CreateProductDto request)
+    {
+        var newProduct = new Product
+        {
+            Name = request.Name,
+            Description = request.Description,
+            Price = request.Price,
+            category = request.Category
+        };
+
+        await _repository.AddAsync(newProduct);
+
+        var responseDto = new ProductResponseDto(
+            newProduct.Id,
+            newProduct.Name,
+            newProduct.Description,
+            newProduct.Price,
+            newProduct.category
+        );
+
+        return CreatedAtAction(nameof(GetProduct), new { id = newProduct.Id }, responseDto);
     }
 }
