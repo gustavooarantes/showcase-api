@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FoodNet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4b50abeebd6cb091791eb138bf2c68b4afefc65")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e70eb4a224dcb74a14ef0e4dd837101e3e21a1b")]
 [assembly: System.Reflection.AssemblyProductAttribute("FoodNet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FoodNet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
